@@ -65,6 +65,10 @@ and (zoo_cnt > 0 or aquarium_cnt > 0)
 ---------------------------------------------------------
 Commit your changes to the "dev" branch before continuing
 ---------------------------------------------------------
+
+git add steps/*
+git commit -m "added attractions to pipeline"
+git push --set-upstream origin dev
 '
 
 # Fetch changes from GitHub
