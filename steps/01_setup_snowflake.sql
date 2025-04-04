@@ -1,3 +1,20 @@
+/*
+Summary
+
+1- Set up a Snowflake warehouse for running queries.
+
+2- Create databases and schemas to organize data.
+
+3- Configures integration with a GitHub repository to automate pulling data (like JSON files) from GitHub.
+
+Sets up a file format and stage to handle the data coming from GitHub.
+
+Copies a file (airport_list.json) from the GitHub repository into the Snowflake stage (bronze.raw).
+
+Sets up notifications via email (likely for monitoring pipeline completions).
+
+*/
+
 USE ROLE ACCOUNTADMIN;
 
 CREATE OR ALTER WAREHOUSE QUICKSTART_WH 
@@ -13,14 +30,14 @@ CREATE OR ALTER DATABASE QUICKSTART_COMMON;
 -- API integration is needed for GitHub integration
 CREATE OR REPLACE API INTEGRATION git_api_integration
   API_PROVIDER = git_https_api
-  API_ALLOWED_PREFIXES = ('https://github.com/<insert GitHub username>') -- INSERT YOUR GITHUB USERNAME HERE
+  API_ALLOWED_PREFIXES = ('https://github.com/rahele-al') -- INSERT YOUR GITHUB USERNAME HERE
   ENABLED = TRUE;
 
 
 -- Git repository object is similar to external stage
 CREATE OR REPLACE GIT REPOSITORY quickstart_common.public.quickstart_repo
   API_INTEGRATION = git_api_integration
-  ORIGIN = '<insert URL of forked GitHub repo>'; -- INSERT URL OF FORKED REPO HERE
+  ORIGIN = 'https://github.com/rahele-al/sfguide-getting-started-with-snowflake-devops'; -- INSERT URL OF FORKED REPO HERE
 
 
 CREATE OR ALTER DATABASE QUICKSTART_PROD;

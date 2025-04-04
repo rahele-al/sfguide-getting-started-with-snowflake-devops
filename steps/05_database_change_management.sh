@@ -1,6 +1,7 @@
 : '
 -----------------------------------------------------------------
 Perform the following changes after switching to the "dev" branch
+$ git checkout -b dev
 -----------------------------------------------------------------
 
 -- Add this view definition at the placeholder near the end of steps/03_harmonize_data.sql
